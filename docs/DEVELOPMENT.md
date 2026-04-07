@@ -189,6 +189,28 @@ pytest tests/test_specific.py::test_function
 pytest-watch
 ```
 
+## Pre-commit Hook Setup (Python Projects)
+
+To enforce code quality standards automatically in Python projects, install the pre-commit hook:
+
+```bash
+# Copy the template to your local hooks directory
+cp .github/hooks/pre-commit.template .git/hooks/pre-commit
+
+# Make it executable
+chmod +x .git/hooks/pre-commit
+```
+
+The hook will run before each commit and check:
+- Tests pass with 80%+ coverage
+- Type checking (if pyright available)
+- Linting (if pylint available)
+- Code formatting (if black available)
+- No obvious hardcoded secrets
+- Commit message format
+
+**Note:** This hook is not active in the starter template itself to avoid issues during initial setup.
+
 ## Code Review Checklist
 
 Before submitting a PR, ensure:

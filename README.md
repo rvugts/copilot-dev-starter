@@ -19,6 +19,7 @@ This repository provides:
 - `.github/copilot-instructions.md` — repository-wide Copilot guidance
 - `.github/instructions/` — language-specific instruction files
 - `.github/skills/` — reusable Copilot skills
+- `.github/hooks/pre-commit.template` — pre-commit hook template for Python projects (copy to `.git/hooks/pre-commit`)
 - `.github/workflows/ci-python.template.yml` — example CI workflow for Python (copy and customize)
 - `.github/workflows/ci-nodejs.template.yml` — example CI workflow for Node.js (copy and customize)
 
