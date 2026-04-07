@@ -29,13 +29,36 @@ All features use the **Red-Green-Refactor** workflow:
 
 ## Getting Started
 
-### 1. Install Dependencies
+### 1. Set Up Python Environment
+
+For Python projects, use the automated setup script:
+
+```bash
+bash scripts/enable-python.sh
+```
+
+This will:
+- Create a virtual environment (`venv/`)
+- Install dependencies from `requirements.txt`
+- Set up the pre-commit hook
+- Enable GitHub Actions CI workflow
+- Create `src/` and `tests/` directories
+
+Then activate the environment:
+```bash
+source venv/bin/activate
+```
+
+### 2. Install Dependencies (Manual Setup)
+
+If you don't want to use the script:
+
 ```bash
 pip install -r requirements.txt      # Python dependencies
 npm install                           # If applicable
 ```
 
-### 2. Understand the Structure
+### 3. Understand the Structure
 
 ```
 project/
@@ -45,8 +68,17 @@ project/
 │   ├── skills/                      # Reusable Copilot skills
 │   ├── prompts/                     # Reusable task prompts
 │   ├── pull_request_template.md     # GitHub PR template
-│   └── workflows/                   # CI/CD workflows (if applicable)
+│   ├── hooks/                       # Git hook templates
+│   └── ci-templates/                # CI/CD workflow templates
+├── .vscode/
+│   ├── settings.json                # Shared VS Code settings
+│   └── extensions.json              # Recommended extensions
+├── scripts/
+│   ├── enable-python.sh             # Python environment setup script
+│   └── README.md                    # Script documentation
 ├── spec.md                          # Feature specification (root or feature dir)
+├── requirements.txt                 # Python dependencies
+├── pyproject.toml                   # Python project configuration
 ├── docs/
 │   ├── DEVELOPMENT.md               # This file
 │   ├── TROUBLESHOOTING.md           # Common issues & solutions
@@ -58,13 +90,19 @@ project/
 └── src/                             # Implementation
 ```
 
-### 3. Review Relevant Guidelines
+### 4. Review Relevant Guidelines
 
 **For all developers:**
 - Read `.github/copilot-instructions.md` (repository-wide rules)
 - Read `docs/adr/` (architectural decisions)
+- Check `.vscode/settings.json` and `.vscode/extensions.json` (shared environment)
 
-**For your language/role:**
+**For Python developers:**
+- Read `.github/instructions/python/python-general.instructions.md`
+- Consult `pyproject.toml` for tool configurations (pytest, black, pylint, pyright)
+- Use `scripts/enable-python.sh` for initial setup
+
+**For your specific language/role:**
 - **Python:** Read `.github/instructions/python/python-general.instructions.md`
 - **FastAPI:** Read `.github/instructions/python/python-fastapi.instructions.md`
 - **Django:** Read `.github/instructions/python/python-django.instructions.md`
@@ -152,10 +190,11 @@ Always include:
 - Example: `def process_data(items: List[Dict[str, Any]]) -> bool:`
 
 ### Testing
-- **Minimum coverage: 80%**
+- **Minimum coverage: 80%** (configured in `pyproject.toml`)
 - **All tests must pass before commit** (enforced by pre-commit hook)
-- Use `pytest` fixtures from `tests/conftest.py`
+- Use `pytest` fixtures from `tests/conftest.py` (create if needed)
 - Follow test pattern in `tests/test_example.py`
+- Configure in `pyproject.toml` under `[tool.pytest.ini_options]`
 
 ### Line Length
 - **Python:** Maximum 100 characters

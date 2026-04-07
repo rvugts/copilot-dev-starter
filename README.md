@@ -14,21 +14,25 @@ This repository provides:
 - `README.md` — project overview
 - `CONTRIBUTING.md` — guidelines for extending the template
 - `CODE_OF_CONDUCT.md` — community standards
+- `requirements.txt` — Python dependencies for SDD/TDD development
+- `pyproject.toml` — Python project configuration and tool settings
 - `docs/DEVELOPMENT.md` — development workflow and standards
 - `docs/TROUBLESHOOTING.md` — common issues and fixes
 - `.github/copilot-instructions.md` — repository-wide Copilot guidance
 - `.github/instructions/` — language-specific instruction files
 - `.github/skills/` — reusable Copilot skills
 - `.github/hooks/pre-commit.template` — pre-commit hook template for Python projects (copy to `.git/hooks/pre-commit`)
-- `.github/ci-templates/ci-python.template.yml` — example CI workflow for Python (copy and customize)
-- `.github/ci-templates/ci-nodejs.template.yml` — example CI workflow for Node.js (copy and customize)
+- `.github/ci-templates/` — CI workflow templates (copy and customize)
+- `.vscode/settings.json` — shared VS Code settings for the project
+- `.vscode/extensions.json` — recommended VS Code extensions
 
 ## Getting started
 
-1. Review `.github/copilot-instructions.md`
-2. Read `docs/DEVELOPMENT.md` for workflow and quality standards
-3. Create a new feature using `docs/spec.template.md`
-4. Write tests first, then implement code
+1. **For Python development:** Run `bash scripts/enable-python.sh`
+2. Review `.github/copilot-instructions.md`
+3. Read `docs/DEVELOPMENT.md` for workflow and quality standards
+4. Create a new feature using `docs/spec.template.md`
+5. Write tests first, then implement code
 5. Use the Copilot skills in `.github/skills/` as needed
 
 ## Contributing
