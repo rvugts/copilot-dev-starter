@@ -162,7 +162,7 @@ Conditionally Include (based on analysis):
 ### Output Format
 
 1. Generate prompt content with XML structure
-2. Save to: `./prompts/[number]-[descriptive-name].md`
+2. Save to: `prompts/[number]-[descriptive-name].md` (in the root folder, excluded from git)
 
 **For single prompts:**
 
@@ -171,7 +171,7 @@ Conditionally Include (based on analysis):
 **For multiple prompts:**
 
 - Generate each prompt with clear, focused objectives
-- Save sequentially: `./prompts/[N]-[name].md`, `./prompts/[N+1]-[name].md`, etc.
+- Save sequentially: `prompts/[N]-[name].md`, `prompts/[N+1]-[name].md`, etc.
 
 **Prompt Patterns**
 
@@ -239,7 +239,7 @@ For Analysis Tasks:
 
 <output_format>
 [How results should be structured]
-Save analysis to: `./analyses/[descriptive-name].md`
+Save analysis to: `analyses/[descriptive-name].md`
 </output_format>
 
 <verification>
@@ -265,7 +265,7 @@ For complex research, include: "Thoroughly explore multiple sources and consider
 <deliverables>
 [Format of research output]
 [Level of detail needed]
-Save findings to: `./research/[topic].md`
+Save findings to: `research/[topic].md`
 </deliverables>
 
 <evaluation_criteria>
@@ -309,4 +309,4 @@ Before completing, verify:
 9. **Verification Always**: Every prompt should include clear success criteria and verification steps
 
 ## Execution
-Check `./prompts/*.md` to determine next sequence number. Save prompts to `./prompts/[number]-[name].md` with correct sequential numbering. Each prompt file contains ONLY the prompt content, no explanations or metadata.
+Check `prompts/*.md` to determine next sequence number. Save prompts to `prompts/[number]-[name].md` with correct sequential numbering. Each prompt file contains ONLY the prompt content, no explanations or metadata.

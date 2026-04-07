@@ -48,6 +48,9 @@ ENV/
 # Node
 node_modules/
 .pnpm-debug.log*
+
+# Prompts
+prompts/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
