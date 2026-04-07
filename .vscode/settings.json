@@ -1,7 +1,9 @@
 {
+  // ============================================================================
+  // File Exclusions (Universal - applies to all projects)
+  // ============================================================================
   "files.exclude": {
     "**/.git": true,
-    "**/.vscode": true,
     "**/.idea": true,
     "**/.cursor": true,
     "**/.DS_Store": true,
@@ -20,41 +22,6 @@
     "**/*.crseo": true,
     "**/creds/": true,
     "**/secrets/": true,
-    "**/__pycache__/": true,
-    "**/*.py[cod]": true,
-    "**/*$py.class": true,
-    "**/*.so": true,
-    "**/.Python": true,
-    "**/build/": true,
-    "**/develop-eggs/": true,
-    "**/dist/": true,
-    "**/downloads/": true,
-    "**/eggs/": true,
-    "**/.eggs/": true,
-    "**/lib/": true,
-    "**/lib64/": true,
-    "**/parts/": true,
-    "**/sdist/": true,
-    "**/var/": true,
-    "**/wheels/": true,
-    "**/share/python-wheels/": true,
-    "**/*.egg-info/": true,
-    "**/.installed.cfg": true,
-    "**/*.egg": true,
-    "**/MANIFEST": true,
-    "**/venv/": true,
-    "**/.venv/": true,
-    "**/env/": true,
-    "**/.env/": true,
-    "**/ENV/": true,
-    "**/.virtualenv/": true,
-    "**/.pytest_cache/": true,
-    "**/.mypy_cache/": true,
-    "**/.ruff_cache/": true,
-    "**/.coverage": true,
-    "**/htmlcov/": true,
-    "**/.tox/": true,
-    "**/.nox/": true,
     "**/node_modules/": true,
     "**/jspm_packages/": true,
     "**/bower_components/": true,
@@ -133,42 +100,8 @@
   },
 
   // ============================================================================
-  // Python Configuration
+  // Editor Configuration (Universal)
   // ============================================================================
-
-  "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python",
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.formatting.provider": "black",
-  "[python]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.formatOnPaste": false,
-    "editor.rulers": [100],
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit"
-    }
-  },
-
-  // Pylance settings
-  "python.analysis.typeCheckingMode": "strict",
-  "python.analysis.diagnosticMode": "workspace",
-  "python.analysis.inlayHints.functionReturnTypes": true,
-  "python.analysis.inlayHints.variableTypes": true,
-
-  // Testing
-  "python.testing.pytestEnabled": true,
-  "python.testing.pytestArgs": [
-    "tests",
-    "--maxfail=1",
-    "-v"
-  ],
-
-  // ============================================================================
-  // Editor Configuration
-  // ============================================================================
-
   "editor.formatOnSave": true,
   "editor.trimAutoWhitespace": true,
   "editor.insertSpaces": true,
@@ -177,15 +110,13 @@
   "files.insertFinalNewline": true,
 
   // ============================================================================
-  // Git Configuration
+  // Git Configuration (Universal)
   // ============================================================================
-
   "git.ignoreLimitWarning": true,
 
   // ============================================================================
-  // Copilot Configuration
+  // Copilot Configuration (Universal)
   // ============================================================================
-
   "github.copilot.enable": {
     "*": true,
     "plaintext": false,

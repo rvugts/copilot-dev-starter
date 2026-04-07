@@ -69,7 +69,31 @@ fi
 echo ""
 
 # ============================================================================
-# 5. Create src and tests directories if they don't exist
+# 5. Merge Python VS Code Configuration
+# ============================================================================
+
+echo "🔧 Merging Python VS Code settings and extensions..."
+python3 .vscode/merge-configs.py python
+echo "✅ VS Code configuration updated"
+
+echo ""
+
+# ============================================================================
+# 6. Create Makefile for Python Commands
+# ============================================================================
+
+if [ ! -f "Makefile" ]; then
+    echo "📋 Creating Makefile..."
+    cp Makefile.python.template Makefile
+    echo "✅ Makefile created (run 'make help' to see available commands)"
+else
+    echo "✅ Makefile already exists"
+fi
+
+echo ""
+
+# ============================================================================
+# 7. Create src and tests directories if they don't exist
 # ============================================================================
 
 if [ ! -d "src" ]; then
@@ -94,10 +118,18 @@ echo ""
 
 echo "✨ Python environment is ready!"
 echo ""
+echo "Setup includes:"
+echo "  ✅ Virtual environment (venv/)"
+echo "  ✅ Dependencies (pytest, pydantic, black, pylint, pyright, etc)"
+echo "  ✅ GitHub Actions CI workflow (.github/workflows/ci.yml)"
+echo "  ✅ Pre-commit hooks (.git/hooks/pre-commit)"
+echo "  ✅ VS Code configuration (settings.json, extensions.json merged)"
+echo "  ✅ Makefile with common commands (test, lint, format, etc)"
+echo ""
 echo "Next steps:"
-echo "  1. Activate the environment: source venv/bin/activate"
-echo "  2. Write tests first (TDD): pytest tests/"
-echo "  3. Implement code in src/"
-echo "  4. Check coverage: pytest --cov=src --cov-fail-under=80"
+echo "  1. Activate: source venv/bin/activate"
+echo "  2. View commands: make help"
+echo "  3. Write tests first: pytest tests/"
+echo "  4. Check coverage: make test"
 echo ""
 echo "Happy coding! 🚀"

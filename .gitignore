@@ -11,6 +11,10 @@ Thumbs.db
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
+!.vscode/settings.python.json
+!.vscode/extensions.python.json
+!.vscode/merge-configs.py
+!.vscode/README.md
 *.code-workspace
 .idea/
 *.iml
