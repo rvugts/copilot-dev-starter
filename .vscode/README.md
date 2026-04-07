@@ -8,6 +8,8 @@ This directory contains shared and language-specific VS Code settings and extens
 - **extensions.json** — Universal extension recommendations (Copilot, GitLens, Remote containers, etc)
 - **settings.python.json** — Python-specific settings (linting, testing, type checking)
 - **extensions.python.json** — Python-specific extensions (Pylance, pytest, Black formatter, etc)
+- **settings.terraform.json** — Terraform-specific settings (formatter, validation)
+- **extensions.terraform.json** — Terraform-specific extensions (Hashicorp Terraform, tfsec, etc)
 - **merge-configs.py** — Helper script to merge language-specific configs into main settings.json/extensions.json
 
 ## How It Works
@@ -32,6 +34,20 @@ This merge script:
 - VS Code automatically loads the updated configs
 
 **Result:** Your settings.json and extensions.json are now extended with Python-specific configuration. You'll see a prompt to install recommended extensions.
+
+### When You Enable Terraform
+
+Run `bash scripts/enable-terraform.sh`, which:
+1. Verifies Terraform installation
+2. Creates directory structure
+3. **Calls** `python .vscode/merge-configs.py terraform`
+
+This merge script:
+- Reads `settings.terraform.json` and merges into `settings.json`
+- Reads `extensions.terraform.json` and merges into `extensions.json`
+- VS Code automatically loads the updated configs
+
+**Result:** Your settings.json and extensions.json are now extended with Terraform-specific configuration.
 
 ## Language Extensibility
 
@@ -59,6 +75,11 @@ To add another language (e.g., Node.js):
    ```bash
    python .vscode/merge-configs.py nodejs
    ```
+
+Same pattern works for Terraform, which follows this structure exactly:
+- `.vscode/settings.terraform.json`
+- `.vscode/extensions.terraform.json`
+- `scripts/enable-terraform.sh` calls `python .vscode/merge-configs.py terraform`
 
 ## Notes
 

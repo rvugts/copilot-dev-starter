@@ -13,6 +13,8 @@ Thumbs.db
 !.vscode/extensions.json
 !.vscode/settings.python.json
 !.vscode/extensions.python.json
+!.vscode/settings.terraform.json
+!.vscode/extensions.terraform.json
 !.vscode/merge-configs.py
 !.vscode/README.md
 *.code-workspace

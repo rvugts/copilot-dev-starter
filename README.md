@@ -29,10 +29,11 @@ This repository provides:
 ## Getting started
 
 1. **For Python development:** Run `bash scripts/enable-python.sh`
-2. Review `.github/copilot-instructions.md`
-3. Read `docs/DEVELOPMENT.md` for workflow and quality standards
-4. Create a new feature using `docs/spec.template.md`
-5. Write tests first, then implement code
+2. **For Terraform:** Run `bash scripts/enable-terraform.sh`
+3. Review `.github/copilot-instructions.md`
+4. Read `docs/DEVELOPMENT.md` for workflow and quality standards
+5. Create a new feature using `docs/spec.template.md`
+6. Write tests first, then implement code
 5. Use the Copilot skills in `.github/skills/` as needed
 
 ## Contributing
