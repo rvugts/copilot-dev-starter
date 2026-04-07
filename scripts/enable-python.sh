@@ -54,16 +54,14 @@ fi
 echo ""
 
 # ============================================================================
-# 4. Install Pre-commit Hook
+# 4. Merge Python Pre-commit Hook Checks
 # ============================================================================
 
-if [ ! -f ".git/hooks/pre-commit" ]; then
-    echo "🔒 Installing pre-commit hook..."
-    cp .github/hooks/pre-commit.template .git/hooks/pre-commit
-    chmod +x .git/hooks/pre-commit
-    echo "✅ Pre-commit hook installed"
+echo "🔒 Setting up pre-commit hook..."
+if [ -d ".git" ]; then
+    python3 scripts/append-precommit.py python
 else
-    echo "✅ Pre-commit hook already installed"
+    echo "⚠️  Not a git repository yet, skipping pre-commit hook"
 fi
 
 echo ""
@@ -79,16 +77,11 @@ echo "✅ VS Code configuration updated"
 echo ""
 
 # ============================================================================
-# 6. Create Makefile for Python Commands
+# 6. Merge Python Makefile Targets
 # ============================================================================
 
-if [ ! -f "Makefile" ]; then
-    echo "📋 Creating Makefile..."
-    cp Makefile.python.template Makefile
-    echo "✅ Makefile created (run 'make help' to see available commands)"
-else
-    echo "✅ Makefile already exists"
-fi
+echo "📋 Setting up Makefile..."
+python3 scripts/append-makefile.py python
 
 echo ""
 

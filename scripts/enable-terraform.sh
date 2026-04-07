@@ -66,21 +66,29 @@ fi
 echo ""
 
 # ============================================================================
-# 4. Create Makefile for Terraform Commands (if not exists)
+# 4. Merge Terraform Pre-commit Hook Checks
 # ============================================================================
 
-if [ ! -f "Makefile" ]; then
-    echo "📋 Creating Makefile..."
-    cp Makefile.terraform.template Makefile
-    echo "✅ Makefile created (run 'make help' to see available commands)"
+echo "🔒 Setting up pre-commit hook..."
+if [ -d ".git" ]; then
+    python3 scripts/append-precommit.py terraform
 else
-    echo "⚠️  Makefile already exists, skipping"
+    echo "⚠️  Not a git repository yet, skipping pre-commit hook"
 fi
 
 echo ""
 
 # ============================================================================
-# 5. Create Terraform Directory Structure
+# 5. Merge Terraform Makefile Targets
+# ============================================================================
+
+echo "📋 Setting up Makefile..."
+python3 scripts/append-makefile.py terraform
+
+echo ""
+
+# ============================================================================
+# 6. Create Terraform Directory Structure
 # ============================================================================
 
 echo "📁 Creating Terraform directory structure..."
@@ -100,14 +108,14 @@ done
 
 # Create a basic .terraform-version file if it doesn't exist
 if [ ! -f ".terraform-version" ]; then
-    terraform version -json 2>/dev/null | jq -r '.terraform_version' > .terraform-version 2>/dev/null || echo "1.5.0" > .terraform-version
+    terraform version -json 2>/dev/null | jq -r '.terraform_version' > .terraform-version 2>/dev/null || echo "1.14.8" > .terraform-version
     echo "  ✅ Created .terraform-version"
 fi
 
 echo ""
 
 # ============================================================================
-# 6. Merge Terraform VS Code Configuration (Optional)
+# 7. Merge Terraform VS Code Configuration (Optional)
 # ============================================================================
 
 if [ -f ".vscode/merge-configs.py" ]; then
@@ -127,6 +135,7 @@ echo "Setup includes:"
 echo "  ✅ Terraform verification"
 echo "  ✅ GitHub Actions CI workflow (.github/workflows/ci-terraform.yml)"
 echo "  ✅ Terraform directory structure (terraform/modules, terraform/envs, etc)"
+echo "  ✅ Pre-commit hooks for Terraform validation"
 echo "  ✅ Makefile with common commands (make help)"
 echo "  ✅ VS Code configuration (optional)"
 echo ""

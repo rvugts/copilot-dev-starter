@@ -2,6 +2,17 @@
 
 This folder contains setup and automation scripts for initializing different language and infrastructure environments.
 
+## Quick Start: Python + Terraform
+
+To set up a project with both Python and Terraform (recommended for most projects):
+
+```bash
+bash scripts/enable-python.sh
+bash scripts/enable-terraform.sh
+```
+
+Both scripts can be run in any order. The setup is idempotent, so you can run them multiple times safely.
+
 ## Python Setup
 
 To enable Python development in your project:
@@ -14,9 +25,9 @@ This script will:
 1. ✅ Create a Python virtual environment (`venv/`)
 2. ✅ Install dependencies from `requirements.txt`
 3. ✅ Enable GitHub Actions CI workflow (from `ci-python.template.yml`)
-4. ✅ Install pre-commit hook for code quality
+4. ✅ Merge Python pre-commit hook checks
 5. ✅ Merge Python VS Code settings and extensions
-6. ✅ Create `Makefile` with Python development commands
+6. ✅ Merge Python Makefile targets
 7. ✅ Create `src/` and `tests/` directories
 
 ## Terraform Setup
@@ -30,10 +41,25 @@ bash scripts/enable-terraform.sh
 This script will:
 1. ✅ Verify Terraform is installed
 2. ✅ Enable GitHub Actions CI workflow (from `ci-terraform.template.yml`)
-3. ✅ Create Makefile with Terraform commands (validate, format, lint, plan)
+3. ✅ Merge Terraform pre-commit hook checks
 4. ✅ Create Terraform directory structure (terraform/modules, terraform/envs, etc)
 5. ✅ Merge Terraform VS Code settings and extensions
-6. ✅ Create .terraform-version file
+6. ✅ Merge Terraform Makefile targets
+7. ✅ Create .terraform-version file
+
+## How the Merge System Works
+
+Instead of overwriting files when both Python and Terraform are enabled, the scripts use intelligent merge helpers:
+
+- **`scripts/append-makefile.py`**: Merges language-specific Makefile targets without duplicates
+- **`scripts/append-precommit.py`**: Merges language-specific pre-commit hook checks
+
+This allows you to run both setup scripts and get a combined development environment with:
+- ✅ Python Makefile targets (test, lint, format, type-check, etc)
+- ✅ Terraform Makefile targets (init, validate, plan, etc)
+- ✅ Python pre-commit checks (pytest, black, pylint, pyright)
+- ✅ Terraform pre-commit checks (terraform fmt, terraform validate, tflint)
+- ✅ Combined VS Code configuration with both language extensions
 
 ### After Python Setup
 

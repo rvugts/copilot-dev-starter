@@ -3,6 +3,8 @@
 Thank you for helping improve this Copilot Vibe Coding project template.
 This repo is intended to provide a reusable starter for Copilot-powered workflows, SDD, and TDD.
 
+**Before contributing, please read `docs/VIBE_CODING_GUIDE.md` for our development philosophy, Copilot usage guidelines, and best practices.**
+
 ## Ways to contribute
 
 - Add new templates or workflow docs under `docs/`

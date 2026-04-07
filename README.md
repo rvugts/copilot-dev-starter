@@ -18,6 +18,7 @@ This repository provides:
 - `pyproject.toml` — Python project configuration and tool settings
 - `docs/DEVELOPMENT.md` — development workflow and standards
 - `docs/TROUBLESHOOTING.md` — common issues and fixes
+- `docs/VIBE_CODING_GUIDE.md` — contributor guide and Copilot best practices
 - `.github/copilot-instructions.md` — repository-wide Copilot guidance
 - `.github/instructions/` — language-specific instruction files
 - `.github/skills/` — reusable Copilot skills
@@ -28,13 +29,14 @@ This repository provides:
 
 ## Getting started
 
-1. **For Python development:** Run `bash scripts/enable-python.sh`
-2. **For Terraform:** Run `bash scripts/enable-terraform.sh`
-3. Review `.github/copilot-instructions.md`
-4. Read `docs/DEVELOPMENT.md` for workflow and quality standards
-5. Create a new feature using `docs/spec.template.md`
-6. Write tests first, then implement code
-5. Use the Copilot skills in `.github/skills/` as needed
+1. **Read the Vibe Coding Guide:** Start with `docs/VIBE_CODING_GUIDE.md` for development philosophy and Copilot best practices
+2. **For Python development:** Run `bash scripts/enable-python.sh`
+3. **For Terraform:** Run `bash scripts/enable-terraform.sh`
+4. Review `.github/copilot-instructions.md`
+5. Read `docs/DEVELOPMENT.md` for workflow and quality standards
+6. Create a new feature using `docs/spec.template.md`
+7. Write tests first, then implement code
+8. Use the Copilot skills in `.github/skills/` as needed
 
 ## Contributing
 
