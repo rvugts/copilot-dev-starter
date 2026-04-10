@@ -10,12 +10,11 @@ We practice **Spec-Driven Development (SDD)** and **Test-Driven Development (TDD
 
 Before writing any code, features must have a specification:
 
-1. **Create `spec.md`** at project root or in the feature directory
-2. Use the template in `docs/spec.template.md`
-3. Include: Context, Requirements, Edge Cases, Success Criteria
-4. Get approval before starting implementation
+1. **Create `docs/specs/spec.md`** using the `create-spec` skill or manually from `docs/spec.template.md`
+2. Include: Context, Requirements, Edge Cases, Success Criteria
+3. Get approval before starting implementation
 
-**Why:** The spec is the contract. AI agents must reference @spec.md to validate their suggestions align with requirements.
+**Why:** The spec is the contract. AI agents must reference `@docs/specs/spec.md` to validate their suggestions align with requirements. Previous specs are archived automatically in `docs/specs/` with descriptive names.
 
 ### Test-Driven Development (TDD)
 
@@ -76,13 +75,15 @@ project/
 ├── scripts/
 │   ├── enable-python.sh             # Python environment setup script
 │   └── README.md                    # Script documentation
-├── spec.md                          # Feature specification (root or feature dir)
 ├── requirements.txt                 # Python dependencies
 ├── pyproject.toml                   # Python project configuration
 ├── docs/
 │   ├── DEVELOPMENT.md               # This file
 │   ├── TROUBLESHOOTING.md           # Common issues & solutions
 │   ├── spec.template.md             # Template for feature specs
+│   ├── specs/                       # Feature specifications
+│   │   ├── spec.md                  # Current active spec
+│   │   └── *.md                     # Archived previous specs
 │   └── adr/                         # Architecture Decision Records
 ├── tests/
 │   ├── test_example.py              # Reference TDD pattern
@@ -116,8 +117,8 @@ project/
 ### Creating a New Feature
 
 ```bash
-# 1. Create specification (at project root or feature directory)
-cp docs/spec.template.md spec.md
+# 1. Create specification (use create-spec skill or copy template)
+cp docs/spec.template.md docs/specs/spec.md
 # Edit with requirements, edge cases, success criteria
 
 # 2. Get approval (team review)
@@ -139,7 +140,7 @@ pytest tests/test_your_feature.py -v
 
 # 7. Verify spec alignment
 # Run: python scripts/validate-spec.py (if exists)
-# Manual check: Does code match spec.md exactly?
+# Manual check: Does code match docs/specs/spec.md exactly?
 
 # 8. Commit with clear message
 git add .
@@ -155,6 +156,7 @@ git push origin feature/your-feature-name
 **Copilot Skills Available:**
 
 Invoke with `/` in Copilot Chat:
+- `/create-spec` - Generate feature specifications (SDD)
 - `/audit-security` - Security audit of codebase
 - `/create-prompt` - Generate reusable prompts
 - `/refactor-python` - Refactor Python code
@@ -168,7 +170,7 @@ See `.github/skills/README.md` for details.
 ✅ GOOD:
 Create a Python function to validate email addresses.
 Follow TDD - write tests first. Reference python-general.instructions.md
-and ensure the implementation aligns with @spec.md section 2.1.
+and ensure the implementation aligns with @docs/specs/spec.md section 2.1.
 
 ❌ BAD:
 Write validation code for emails.
@@ -177,7 +179,7 @@ Write validation code for emails.
 **Keeping Copilot on Rails:**
 
 Always include:
-1. Reference to @spec.md (if applicable)
+1. Reference to @docs/specs/spec.md (if applicable)
 2. Expected language/framework (Python, React, etc.)
 3. TDD requirement (write tests first)
 4. Acceptance criteria
@@ -256,7 +258,7 @@ Before submitting a PR, ensure:
 - [ ] Tests written first (Red phase complete)
 - [ ] All tests passing (`pytest --cov=src --cov-fail-under=80`)
 - [ ] Code follows language-specific instructions (`.github/instructions/`)
-- [ ] Spec.md alignment verified (if feature-related)
+- [ ] `docs/specs/spec.md` alignment verified (if feature-related)
 - [ ] Type hints on all functions
 - [ ] No hardcoded secrets or credentials
 - [ ] Complex logic has inline comments
@@ -289,6 +291,7 @@ Having issues with Copilot guidance? See `docs/TROUBLESHOOTING.md` for common pr
 - **Custom Instructions:** `.github/instructions/README.md`
 - **Architecture Decisions:** `docs/adr/`
 - **Spec Template:** `docs/spec.template.md`
+- **Active Spec:** `docs/specs/spec.md` (archived specs in the same folder)
 - **Test Example:** `tests/test_example.py`
 
 ---

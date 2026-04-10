@@ -30,7 +30,7 @@ Traditional coding can feel mechanical. Vibe coding makes development enjoyable 
 
 ```markdown
 # Before writing ANY code:
-1. Read spec.md (if exists)
+1. Read docs/specs/spec.md (if exists)
 2. Understand requirements thoroughly
 3. Ask clarifying questions if needed
 4. Plan implementation aligned with spec
@@ -114,7 +114,7 @@ This repository includes specialized Copilot skills for common development tasks
 ```bash
 # Good: Provide full context
 "Create a Python function to validate email addresses following TDD.
-Reference python-general.instructions.md and ensure alignment with spec.md section 2.1."
+Reference python-general.instructions.md and ensure alignment with docs/specs/spec.md section 2.1."
 
 # Bad: Vague requests
 "Write an email validator"
@@ -159,7 +159,7 @@ Finally, refactor for better structure (Refactor phase)."
 
 #### For SDD
 ```
-"@spec.md says the user authentication must support OAuth2.
+"@docs/specs/spec.md says the user authentication must support OAuth2.
 Create the implementation following this spec and python-django.instructions.md."
 ```
 
@@ -172,7 +172,21 @@ Create the implementation following this spec and python-django.instructions.md.
 
 This repository includes specialized Copilot skills to enhance your workflow. Skills are automatically invoked when relevant, or you can invoke them explicitly.
 
-### 1. audit-security
+### 1. create-spec
+**Purpose:** Produce a specification aligned with `docs/spec.template.md` using specification-driven development
+
+**Best for:**
+- New features or systems before implementation
+- Capturing requirements, behavior, and acceptance criteria in one contract
+
+**How to invoke:**
+```
+Use the create-spec skill to draft a spec for [feature].
+```
+
+**Output:** Writes `docs/specs/spec.md` and archives any prior active spec using its frontmatter `name` field.
+
+### 2. audit-security
 **Purpose**: Comprehensive security audit of your codebase
 
 **Best for:**
@@ -197,7 +211,7 @@ Perform a security audit on this codebase to identify vulnerabilities and compli
 - Secrets management
 - Dependency supply chain security
 
-### 2. refactor-python
+### 3. refactor-python
 **Purpose**: Refactor Python code applying engineering best practices
 
 **Best for:**
@@ -221,7 +235,7 @@ Use the refactor-python skill to improve this code while maintaining functionali
 - Security improvements
 - Performance optimizations
 
-### 3. create-prompt
+### 4. create-prompt
 **Purpose**: Generate structured prompts for complex tasks
 
 **Best for:**
@@ -241,7 +255,7 @@ Use the create-prompt skill to create a multi-step prompt for analyzing our data
 - Support for sequential multi-prompt workflows
 - Automatic prompt numbering and saving to `./prompts/`
 
-### 4. run-prompt
+### 5. run-prompt
 **Purpose**: Execute saved prompts as isolated sub-tasks
 
 **Best for:**
@@ -370,7 +384,7 @@ bash scripts/enable-terraform.sh
 ### 3. Development Workflow
 
 ```bash
-# 1. Understand requirements (read spec.md)
+# 1. Understand requirements (read docs/specs/spec.md)
 # 2. Write failing tests (TDD Red)
 # 3. Implement minimal solution (TDD Green)
 # 4. Refactor for quality (TDD Refactor)
@@ -506,6 +520,7 @@ output "vpc_id" {
 
 ### Copilot Skills
 The repository includes specialized skills for common development tasks:
+- **create-spec**: Specification-driven development; writes `docs/specs/spec.md`
 - **audit-security**: Comprehensive security audits with OWASP Top 10 checks
 - **refactor-python**: Python code refactoring and optimization
 - **create-prompt**: Generate structured multi-step prompts
@@ -525,12 +540,11 @@ See the "Available Copilot Skills" section above for detailed usage.
 
 ## Questions?
 
-- **For spec clarification**: Check spec.md or ask maintainers
+- **For spec clarification**: Check docs/specs/spec.md or ask maintainers
 - **For implementation help**: Reference language-specific instructions
 - **For Copilot issues**: Try rephrasing prompts with more context
 - **For general questions**: Check existing issues or create new discussion
 
 Remember: Vibe coding is about enjoying the process while maintaining high standards. Use Copilot as your coding companion, but always apply your expertise and judgment!
 
-🚀 Happy coding! 🎯</content>
-<parameter name="filePath">/Users/ai-chitect/Development/copilot-dev-starter/docs/VIBE_CODING_GUIDE.md
+🚀 Happy coding! 🎯

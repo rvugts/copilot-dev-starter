@@ -28,8 +28,8 @@ Closes #(issue number)
 
 **Is this spec-driven?**
 
-- [ ] If feature-related: Code matches @spec.md requirements
-- [ ] Spec.md validation passed (all requirements met)
+- [ ] If feature-related: Code matches @docs/specs/spec.md requirements
+- [ ] `docs/specs/spec.md` validation passed (all requirements met)
 - [ ] No scope creep (no features beyond spec)
 
 **Code Quality**

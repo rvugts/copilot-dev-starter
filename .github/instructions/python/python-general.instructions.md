@@ -25,7 +25,7 @@ You are an expert Senior Python Developer specializing in clean, maintainable, a
 
 ## Spec-Driven Development (SSD)
 
-- **Mandatory:** If a `spec.md` file exists in the root directory, it must be followed exactly.
+- **Mandatory:** If `docs/specs/spec.md` exists, it must be followed exactly.
 - If the spec is incorrect or has flaws, report it immediately.
 
 ## Type Hints

@@ -56,18 +56,18 @@ Follow TDD pattern in .github/instructions/workflows/tdd.instructions.md
 
 ### Copilot Ignores Project Specifications
 
-**Problem:** Copilot implements features that don't match @spec.md.
+**Problem:** Copilot implements features that don't match @docs/specs/spec.md.
 
 **Root Cause:** Spec not referenced in the request.
 
 **Solution:**
-1. Always reference @spec.md: "Implement per @spec.md section 2.1"
+1. Always reference @docs/specs/spec.md: "Implement per @docs/specs/spec.md section 2.1"
 2. Paste spec requirements if not obvious
-3. Ask Copilot to validate: "Verify this implementation matches @spec.md requirements exactly"
+3. Ask Copilot to validate: "Verify this implementation matches @docs/specs/spec.md requirements exactly"
 
 **Correct Request Format:**
 ```
-Create user authentication per @spec.md section 2.1.
+Create user authentication per @docs/specs/spec.md section 2.1.
 Requirements:
 1. Support email/password login
 2. Return JWT token (not cookies)

@@ -17,11 +17,12 @@ This repository provides:
 - `requirements.txt` — Python dependencies for SDD/TDD development
 - `pyproject.toml` — Python project configuration and tool settings
 - `docs/DEVELOPMENT.md` — development workflow and standards
+- `docs/specs/spec.md` — active feature specification (when present); archived specs live in `docs/specs/` too
 - `docs/TROUBLESHOOTING.md` — common issues and fixes
 - `docs/VIBE_CODING_GUIDE.md` — contributor guide and Copilot best practices
 - `.github/copilot-instructions.md` — repository-wide Copilot guidance
 - `.github/instructions/` — language-specific instruction files
-- `.github/skills/` — reusable Copilot skills
+- `.github/skills/` — reusable Copilot skills (create-spec, audit-security, refactor-python, create-prompt, run-prompt)
 - `.github/hooks/pre-commit.template` — pre-commit hook template for Python projects (copy to `.git/hooks/pre-commit`)
 - `.github/ci-templates/` — CI workflow templates (copy and customize)
 - `.vscode/settings.json` — shared VS Code settings for the project
@@ -34,9 +35,22 @@ This repository provides:
 3. **For Terraform:** Run `bash scripts/enable-terraform.sh`
 4. Review `.github/copilot-instructions.md`
 5. Read `docs/DEVELOPMENT.md` for workflow and quality standards
-6. Create a new feature using `docs/spec.template.md`
+6. Create a spec for your feature using the `create-spec` skill (or manually from `docs/spec.template.md`)
 7. Write tests first, then implement code
 8. Use the Copilot skills in `.github/skills/` as needed
+
+## Specification-Driven Development
+
+This template supports SDD — every feature starts with a specification that serves as the contract between requirements and implementation.
+
+**Quick start:**
+1. Ask Copilot to use the `create-spec` skill, or invoke `/create-spec`
+2. Answer the guided questions about your feature
+3. The skill writes `docs/specs/spec.md` (archiving any previous active spec using its frontmatter `name`), aligned with `docs/spec.template.md`
+4. Write tests based on the spec's behavior scenarios and acceptance criteria (TDD)
+5. Implement the feature, using the spec as the single source of truth
+
+The `create-spec` skill supports Python, Node.js/TypeScript, Databricks/PySpark/SQL, and other stacks. See `.github/skills/create-spec/SKILL.md` for details.
 
 ## Contributing
 

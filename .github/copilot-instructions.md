@@ -49,11 +49,12 @@ All code should follow these fundamental principles:
 - Follow WCAG 2.1 AA standards for web applications
 
 ### 6. Specification-Driven Development (SDD)
-- **Always reference @spec.md if it exists in the project**
-- The `spec.md` file serves as the authoritative contract for implementation
+- **Always reference @docs/specs/spec.md if it exists in the project**
+- The `docs/specs/spec.md` file serves as the authoritative contract for implementation
 - Before writing code, verify implementation against the specification
 - If the approach contradicts the spec, follow the spec strictly
 - See `docs/spec.template.md` for specification format
+- Previous specs are archived in `docs/specs/` with descriptive names
 
 ### 7. Test-Driven Development (TDD)
 - **Mandatory workflow:** Red → Green → Refactor
@@ -94,10 +95,10 @@ All code should follow these fundamental principles:
 - Plan for graceful degradation when external services fail
 
 ### Specification Alignment
-- When spec.md exists, it is the source of truth
+- When `docs/specs/spec.md` exists, it is the source of truth
 - Do not implement features beyond the specification
 - If implementation requires changes to the spec, document and discuss (don't just modify)
-- Use spec.md to validate completeness of implementation
+- Use `docs/specs/spec.md` to validate completeness of implementation
 
 ### Development Workflow
 - Watch `docs/DEVELOPMENT.md` for complete development workflow
@@ -117,19 +118,21 @@ The specific instructions will automatically apply based on the file type you're
 
 ## Specification File
 
-When a `spec.md` file exists in your project root or in the `docs` folder, it defines:
+When `docs/specs/spec.md` exists, it defines:
 - Feature requirements and expected behavior
 - Input/output specifications
 - Edge cases that must be handled
 - Performance requirements (if applicable)
 - Security requirements for the feature
 
-**Always verify implementation against `spec.md` requirements.**
+Previous specs are archived alongside it in `docs/specs/` with descriptive names.
+
+**Always verify implementation against `docs/specs/spec.md` requirements.**
 
 ## Asking Copilot for Help
 
 When requesting Copilot's assistance:
-- Reference the relevant specification if your request involves feature implementation
+- Reference `docs/specs/spec.md` if your request involves feature implementation
 - Mention the language/framework you're working with for optimal guidance
 - Include context about the current code structure
 - Specify if this is for tests or implementation
@@ -141,12 +144,12 @@ When requesting Copilot's assistance:
 ```
 Create a Python function to validate email addresses. 
 Follow TDD - write tests first. Reference python-general.instructions.md 
-and ensure the implementation aligns with spec.md section 2.1.
+and ensure the implementation aligns with @docs/specs/spec.md section 2.1.
 ```
 
 ### Specification Reference
 ```
-@spec.md says the user authentication must support OAuth2. 
+@docs/specs/spec.md says the user authentication must support OAuth2. 
 Create the implementation following this spec and python-django.instructions.md.
 ```
 
@@ -161,6 +164,6 @@ Finally, refactor for better structure (Refactor phase).
 
 If implementation conflicts with this guidance:
 1. Check the specific language instructions in `.github/instructions/`
-2. Review the `spec.md` file if it exists
+2. Review `docs/specs/spec.md` if it exists
 3. Verify against the core principles above
 4. When in doubt, prioritize: **Spec > Security > Best Practices > Style**

@@ -4,6 +4,18 @@ This directory contains custom agent skills for GitHub Copilot. These skills enh
 
 ## Available Skills
 
+### create-spec
+**Description:** Creates production-grade specifications for features or systems using specification-driven development (SDD). Guides the user through requirements gathering, then writes `docs/specs/spec.md` aligned with the project's spec template, archiving the previous active spec automatically.
+
+**When to use:** When you need to write a spec, plan a new feature, design a system, or start an implementation using spec-driven development.
+
+**Key features:**
+- Guided 5-phase process: intake, analysis, contextual questioning, decision gate, generation
+- Produces specs aligned with `docs/spec.template.md`
+- Stack-specific guidance for Python, Node.js/TypeScript, Databricks/PySpark/SQL, and more
+- Complexity scaling — lightweight specs for simple features, comprehensive for complex systems
+- Every requirement maps to testable acceptance criteria (SDD + TDD ready)
+
 ### audit-security
 **Description:** Performs a comprehensive security audit of the current codebase, identifying vulnerabilities and providing remediation strategies based on OWASP Top 10 2025 standards.
 
@@ -83,6 +95,7 @@ Personal skills are available across all your projects.
 
 ### Automatic Invocation
 Skills are automatically loaded when Copilot determines the task matches the skill's description. For example:
+- Asking to "create a spec" or "write a specification" will invoke `create-spec`
 - Mentioning "security audit" will likely invoke `audit-security`
 - Requesting Python refactoring will invoke `refactor-python`
 - Asking to create prompts will invoke `create-prompt`
@@ -99,6 +112,7 @@ Use the audit-security skill to perform a security audit on this codebase.
 #### 2. Slash Commands
 Use slash commands in Copilot Chat:
 ```
+/create-spec
 /audit-security
 /refactor-python
 /create-prompt

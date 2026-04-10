@@ -1,38 +1,37 @@
-# Feature Specification: [Feature Name]
+---
+name: [kebab-case-name]
+---
 
-Use this template when creating new features. The specification is the **contract** between requirements and implementation. Reference this in your tests and code to ensure correctness.
+# Specification: [Project/Feature Name]
 
-**Tip:** This becomes your test cases. Each requirement should have a corresponding test before implementation.
+**Version:** [Semantic version, e.g. 1.0.0]
+**Date:** [ISO 8601, e.g. 2026-04-10]
+**Status:** Draft | In Review | Approved
+**Owner:** [Name/Team]
+
+The `name` in the YAML frontmatter is the stable identifier used when this file is archived (renamed to `docs/specs/{name}.md`) after a new active spec replaces `docs/specs/spec.md`. Use kebab-case and keep it unique among archived specs in that folder.
+
+> This specification is the **contract** between requirements and implementation.
+> Every requirement maps to acceptance criteria. Every acceptance criterion maps to a test.
+> If it's not in the spec, it doesn't get built. If it can't be tested, it's not a requirement.
 
 ---
 
-## Context
+## 1. Context
 
-### Problem Statement
+### 1.1 Problem Statement
 
-[Describe the problem or user need this feature solves. What pain point are we addressing?]
+[What problem or user need does this solve? What pain point are we addressing?]
 
-**Example:**
-> Users cannot easily validate email addresses during signup, resulting in invalid emails in the database and failed communication attempts.
+### 1.2 Background
 
-### Background
+[Relevant technical, business, or organizational context that shapes the solution.]
 
-[Provide relevant technical, business, or organizational context.]
+### 1.3 Business Value
 
-**Example:**
-> Our signup flow currently accepts any text in the email field. This causes issues when:
-> - Transactional emails bounce
-> - We lose the ability to contact users
-> - Debugging support tickets becomes harder
+[Why are we building this? What's the expected impact? Include metrics where possible.]
 
-### Business Value
-
-[Why are we building this? What's the expected impact?]
-
-**Example:**
-> Reducing invalid emails by 90% will improve email delivery rates and reduce support tickets by an estimated 20%.
-
-### User Story
+### 1.4 User Stories
 
 ```
 As a [user role],
@@ -40,270 +39,435 @@ I want to [action/capability],
 So that [expected benefit].
 ```
 
-**Example:**
+[Add as many user stories as needed to capture the full scope of user needs.]
+
+---
+
+## 2. Scope
+
+### 2.1 In Scope
+
+- [Capability or deliverable 1]
+- [Capability or deliverable 2]
+
+### 2.2 Out of Scope (Non-Goals)
+
+Explicitly document what is NOT included to prevent scope creep.
+
+- [Explicitly excluded capability 1]
+- [Explicitly excluded capability 2]
+
+---
+
+## 3. Requirements
+
+### 3.1 Functional Requirements
+
+Each requirement MUST have testable acceptance criteria.
+
+| ID | Requirement | Acceptance Criteria | Priority |
+|----|-------------|---------------------|----------|
+| FR-1 | [Requirement name] | [Specific, measurable criterion] | Must Have |
+| FR-2 | [Requirement name] | [Specific, measurable criterion] | Must Have |
+| FR-3 | [Requirement name] | [Specific, measurable criterion] | Should Have |
+
+### 3.2 Non-Functional Requirements
+
+- **Performance:**
+  - Response time: < [X]ms (p95)
+  - Throughput: [X] requests/second
+  - Concurrent users: [X]
+- **Security:**
+  - Authentication: [method, e.g. JWT, OAuth2]
+  - Authorization: [model, e.g. RBAC, ABAC]
+  - Encryption: [TLS version, at-rest encryption]
+  - Input validation: All user inputs validated and sanitized
+  - Secrets: No secrets in code; use [env vars / secret manager]
+- **Reliability:**
+  - Uptime target: [e.g. 99.9%]
+  - Recovery time objective: [X minutes]
+  - Data backup: [strategy]
+- **Maintainability:**
+  - Test coverage: >= [X]%
+  - All public functions/classes documented
+  - Linting: [linter] with [config]
+  - Type safety: [type hints / TypeScript strict mode / etc.]
+
+---
+
+## 4. Behavior Specification
+
+Define how the system behaves in concrete scenarios. These become your tests.
+
+### 4.1 Success Scenarios
+
+#### Scenario: [Name]
+
 ```
-As a user signing up,
-I want to be notified immediately if my email is invalid,
-So that I can correct it before submitting the form.
+Given: [precondition]
+When:  [action]
+Then:  [expected result]
+And:   [additional assertions]
+```
+
+#### Scenario: [Name]
+
+```
+Given: [precondition]
+When:  [action]
+Then:  [expected result]
+```
+
+### 4.2 Edge Cases & Error Scenarios
+
+| Input / Condition | Expected Behavior | Test Case |
+|-------------------|-------------------|-----------|
+| [edge case 1] | [expected behavior] | `test_[description]()` |
+| [edge case 2] | [expected behavior] | `test_[description]()` |
+| [malicious input] | [reject / sanitize safely] | `test_[description]()` |
+
+---
+
+## 5. Technical Stack
+
+All components MUST specify versions. Prefer latest stable.
+
+| Component | Technology | Version |
+|-----------|-----------|---------|
+| Language | [e.g. Python] | [e.g. 3.12] |
+| Framework | [e.g. FastAPI] | [e.g. 0.115] |
+| Database | [e.g. PostgreSQL] | [e.g. 16] |
+| Infrastructure | [e.g. AWS / Azure / GCP] | [region] |
+| Key dependencies | [list critical libs] | [versions] |
+
+---
+
+## 6. Architecture
+
+### 6.1 Overview
+
+[High-level description of the architecture and the reasoning behind it.]
+
+### 6.2 Components
+
+| Component | Responsibility |
+|-----------|---------------|
+| [Component 1] | [What it does] |
+| [Component 2] | [What it does] |
+
+### 6.3 Component Diagram
+
+```mermaid
+graph TD
+    A[Component 1] --> B[Component 2]
+    B --> C[Component 3]
+```
+
+### 6.4 Data Flow
+
+[Describe how data moves through the system for key operations.]
+
+### 6.5 Key Decisions (ADRs)
+
+Document significant architecture choices:
+
+| Decision | Rationale | Alternatives Considered |
+|----------|-----------|------------------------|
+| [e.g. Use PostgreSQL over MongoDB] | [Why this choice] | [What else was considered] |
+
+---
+
+## 7. Data Model
+
+### 7.1 Entities
+
+For each entity:
+
+#### [EntityName]
+
+| Field | Type | Constraints | Default | Description |
+|-------|------|-------------|---------|-------------|
+| id | [type] | PRIMARY KEY, NOT NULL | auto | [description] |
+| [field] | [type] | [constraints] | [default] | [description] |
+
+**Relationships:** [One-to-Many with X, Many-to-Many with Y]
+**Indexes:** [field(s) — purpose]
+**Validation Rules:** [Business rules that constrain this entity]
+
+### 7.2 Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    ENTITY_A ||--o{ ENTITY_B : "has many"
+    ENTITY_A {
+        uuid id PK
+        string name
+    }
+    ENTITY_B {
+        uuid id PK
+        uuid entity_a_id FK
+    }
 ```
 
 ---
 
-## Requirements
+## 8. Interface Contract
 
-### Core Requirements (Must Have)
+### 8.1 Interface Type
 
-These requirements MUST be implemented for the feature to be complete.
+Check all that apply:
 
-1. **Requirement Name**
-   - **Acceptance Criteria:** The system shall [specific measurable criteria]
-   - **Example:** The system shall validate email format using RFC 5322 standards
-   - **Related Test:** `test_email_validation_format()`
+- [ ] REST API
+- [ ] GraphQL API
+- [ ] Web Application (Frontend)
+- [ ] CLI (Command Line Interface)
+- [ ] Library / SDK
+- [ ] Mobile Application
+- [ ] Other: [specify]
 
-2. **Requirement Name**
-   - **Acceptance Criteria:** [Specific criteria]
-   - **Example:** Invalid emails shall reject with a clear error message
-   - **Related Test:** `test_email_validation_error_message()`
+### 8.2 Interface Specifications
 
-3. **Requirement Name**
-   - **Example:** Email validation shall complete in <10ms for any input
-   - **Related Test:** `test_email_validation_performance()`
+**For each interface, specify:**
+- Name / path / signature
+- Input schema (types, constraints, validation)
+- Output schema (success response format)
+- Error responses (codes, format — see Section 9)
+- Authentication / authorization requirements
 
-### Nice-to-Have Requirements (Should Have)
+#### REST API Endpoints
 
-These are valuable but not blocking.
+> Include this section if the project exposes HTTP APIs.
 
-- [ ] SMTP verification (verify mailbox exists)
-- [ ] Internationalized domain name support
-- [ ] Disposable email detection
+**Base URL:** [e.g. `https://api.example.com/v1`]
+**Authentication:** [method]
+**Content-Type:** `application/json`
 
-### Non-Requirements (Won't Have)
+##### [METHOD] /api/v1/[resource]
 
-Explicitly document what's NOT included (prevents scope creep).
+- **Description:** [What this endpoint does]
+- **Auth:** [Required / Public]
+- **Request:**
+  ```json
+  {
+    "field": "type — constraints"
+  }
+  ```
+- **Success Response (200):**
+  ```json
+  {
+    "data": {},
+    "meta": {}
+  }
+  ```
+- **Error Responses:** [See Section 9 for format]
 
-- ❌ We will NOT validate whether mailbox exists (SMTP check)
-- ❌ We will NOT support international domains in MVP
-- ❌ We will NOT implement email verification emails (separate feature)
+#### CLI Commands
 
----
+> Include this section if the project is a CLI tool.
 
-## Behavior Specification
+##### `command [args] [--flags]`
 
-### Success Scenarios
+- **Description:** [What it does]
+- **Arguments:** [Positional args with types]
+- **Flags:** [Optional flags with defaults]
+- **Exit codes:** 0 = success, 1 = error, [others]
+- **Example:**
+  ```bash
+  $ command arg --flag value
+  Expected output
+  ```
 
-Describe what happens when the feature works as intended.
+#### Library / SDK
 
-#### Scenario 1: Valid Email
-```
-Given: User enters valid email "user@example.com"
-When:  User submits signup form
-Then:  Email is accepted and form proceeds to next step
-And:   No error message is shown
-```
+> Include this section if the project is a library or package.
 
-#### Scenario 2: Invalid Format
-```
-Given: User enters invalid email "not-an-email"
-When:  User submits signup form
-Then:  Email is rejected
-And:   Error message displays "Invalid email format. Please check and try again."
-And:   Form does NOT proceed to next step
-```
+##### `function_name(params) -> ReturnType`
 
-#### Scenario 3: Special Characters
-```
-Given: User enters email with special chars "user+tag@sub.example.com"
-When:  User submits signup form
-Then:  Email is accepted (RFC 5322 compliant)
-And:   Form proceeds to next step
-```
-
-### Edge Cases & Error Scenarios
-
-Describe unusual situations and how the system should behave.
-
-| Input | Expected Behavior | Test Case |
-|-------|-------------------|-----------|
-| Empty string `""` | Reject with required field error | `test_email_empty_rejects()` |
-| `user@` (missing domain) | Reject as invalid format | `test_email_missing_domain_rejects()` |
-| `user@localhost` (no TLD) | Reject as invalid format | `test_email_no_tld_rejects()` |
-| `user@example.co.uk` (multi-part TLD) | Accept as valid | `test_email_multi_tld_accepts()` |
-| Spaces: `user @example.com` | Reject as invalid format | `test_email_spaces_rejects()` |
-| Very long: `aaa...aaa@example.com` (255+ chars) | Reject (exceeds RFC 5321 limit of 254) | `test_email_too_long_rejects()` |
-| SQL injection: `user@example.com'; DROP TABLE users;--` | Reject as invalid format OR escape/sanitize safely | `test_email_sql_injection_safe()` |
+- **Description:** [What it does]
+- **Parameters:** [name: type — constraints]
+- **Returns:** [type — description]
+- **Raises / Throws:** [Error types and when]
+- **Example:**
+  ```
+  result = function_name(param1, param2)
+  ```
 
 ---
 
-## Implementation Constraints
+## 9. Error Handling Contract
 
-### Technology & Dependencies
+All errors MUST follow a consistent structure.
 
-- **Language:** Python 3.10+
-- **Framework:** FastAPI (if applicable)
-- **Validation Library:** Use `email-validator` package (RFC 5322 compliant)
-- **Database:** No database calls during validation (stateless validation only)
+### 9.1 Error Response Format
 
-### Performance Requirements
-
-- Validation must complete in **<10ms** per email
-- No external API calls during validation
-- Support bulk validation (1000+ emails) without blocking
-
-### Security Requirements
-
-- **Input Sanitization:** No user input should be logged or stored before validation
-- **Error Messages:** Don't reveal why email failed (security through obscurity)
-  - ❌ BAD: "user@example.com is already registered"
-  - ✅ GOOD: "This email is unavailable"
-- **Rate Limiting:** Prevent validation spam (max 10 validations per minute per IP)
-- **No PII Logging:** Never log full email addresses in production
-
-### Compliance & Standards
-
-- **RFC 5322:** Email format compliance
-- **RFC 5321:** Maximum 254 character length
-- **GDPR:** No storing of emails for validation purposes (ephemeral only)
-
----
-
-## Success Criteria
-
-Feature is complete when:
-
-- ✅ All core requirements implemented
-- ✅ All test cases passing (see Test Cases section below)
-- ✅ Test coverage >80%
-- ✅ Spec alignment verified (code matches this spec exactly)
-- ✅ Performance tests passing (<10ms validation)
-- ✅ Security tests passing (no SQL injection, no PII logging)
-- ✅ Refactoring complete (code quality standards met)
-- ✅ Documentation updated (docstrings, README, API docs)
-- ✅ Code review approved
-- ✅ No breaking changes to existing APIs
-
----
-
-## Test Cases
-
-These become your actual tests (TDD: write these first!).
-
-### Unit Tests
-
-```python
-# In tests/test_email_validation.py
-
-import pytest
-from validators import validate_email, InvalidEmailError
-
-class TestEmailValidation:
-    """Email validation test suite."""
-    
-    # Valid emails (should accept)
-    @pytest.mark.parametrize("email", [
-        "user@example.com",
-        "user.name@example.com",
-        "user+tag@example.co.uk",
-        "test123@subdomain.example.com",
-    ])
-    def test_valid_emails_accepted(self, email):
-        """Valid emails should be accepted."""
-        assert validate_email(email) is True
-    
-    # Invalid emails (should reject)
-    @pytest.mark.parametrize("email", [
-        "",
-        "not-an-email",
-        "user@",
-        "@example.com",
-        "user@example",
-        "user@.example.com",
-        "user @example.com",
-    ])
-    def test_invalid_emails_rejected(self, email):
-        """Invalid emails should raise InvalidEmailError."""
-        with pytest.raises(InvalidEmailError):
-            validate_email(email)
-    
-    # Performance test
-    def test_validation_performance(self):
-        """Validation should complete in <10ms."""
-        import time
-        start = time.time()
-        validate_email("user@example.com")
-        elapsed = (time.time() - start) * 1000
-        assert elapsed < 10, f"Validation took {elapsed}ms (should be <10ms)"
-    
-    # Security tests
-    def test_sql_injection_safe(self):
-        """SQL injection attempts should be safely rejected."""
-        malicious = "user@example.com'; DROP TABLE users;--"
-        with pytest.raises(InvalidEmailError):
-            validate_email(malicious)
-    
-    # Edge cases
-    def test_max_length_email(self):
-        """RFC 5321 max length (254 chars) should be accepted."""
-        email = "a" * 240 + "@example.com"  # 254 chars
-        assert validate_email(email) is True
-    
-    def test_over_length_email(self):
-        """Emails >254 chars should be rejected."""
-        email = "a" * 250 + "@example.com"  # 261 chars
-        with pytest.raises(InvalidEmailError):
-            validate_email(email)
+```json
+{
+  "error": {
+    "code": "CATEGORY_SPECIFIC_ERROR",
+    "message": "Human-readable description",
+    "details": {},
+    "request_id": "tracking-uuid"
+  }
+}
 ```
 
-### Integration Tests
+For CLIs, errors print to stderr:
+```
+Error: [ERROR_CODE] — [message]
+```
 
-```python
-# In tests/test_signup_email_validation.py
+### 9.2 Error Code Categories
 
-def test_signup_form_rejects_invalid_email(client):
-    """Signup form should reject invalid emails."""
-    response = client.post("/api/signup", json={
-        "email": "invalid-email",
-        "password": "SecurePass123",
-    })
-    assert response.status_code == 422
-    assert "email" in response.json()["detail"]
+| Category | Code Pattern | HTTP Status | Description |
+|----------|-------------|-------------|-------------|
+| Validation | `VALIDATION_*` | 400 / 422 | Input validation failures |
+| Auth | `AUTH_*` | 401 / 403 | Authentication / authorization |
+| Not Found | `NOT_FOUND_*` | 404 | Resource not found |
+| Conflict | `CONFLICT_*` | 409 | State conflict |
+| Server | `SERVER_*` | 500 | Internal errors |
+
+### 9.3 Error Principles
+
+- User-facing messages: clear, non-technical, actionable
+- Never expose internals (stack traces, DB structure, file paths, secrets)
+- All errors logged with: timestamp, request_id, code, message, stack trace (server-side only)
+- Error codes are unique and documented
+
+---
+
+## 10. Implementation Constraints
+
+### 10.1 Code Quality
+
+- [ ] All code passes linting ([linter] with [config])
+- [ ] Test coverage >= [X]%
+- [ ] All public APIs have documentation / docstrings
+- [ ] No hardcoded secrets or magic numbers
+- [ ] Type-safe (type hints / strict mode enforced)
+
+### 10.2 Testing
+
+- [ ] Unit tests for all business logic
+- [ ] Integration tests for all interface endpoints
+- [ ] Tests are deterministic (no flaky tests)
+- [ ] Test data is isolated (no shared mutable state)
+- [ ] Edge cases from Section 4.2 are covered
+
+### 10.3 Security
+
+- [ ] Input validation on all user-provided data
+- [ ] Auth on all protected endpoints / operations
+- [ ] Parameterized queries (no SQL injection)
+- [ ] Output encoding (no XSS)
+- [ ] Rate limiting on public endpoints
+- [ ] No sensitive data in logs or error messages
+
+### 10.4 Version Control
+
+- Commits follow [Conventional Commits](https://www.conventionalcommits.org/) format
+- Branches: `feature/`, `fix/`, `refactor/` prefixes
+- All commits are atomic and pass tests
+
+---
+
+## 11. Test Cases
+
+Write these FIRST (TDD). Each test maps back to a requirement or behavior scenario.
+
+### 11.1 Unit Tests
+
+```
+# test_[module].[test_class_or_function]
+
+test_[scenario]_[expected_result]:
+    Setup:  [preconditions]
+    Action: [call under test]
+    Assert: [expected outcome]
+```
+
+[List key test cases. For complex features, include parameterized test outlines.]
+
+### 11.2 Integration Tests
+
+```
+test_[flow]_[expected_result]:
+    Setup:  [system state]
+    Action: [API call / command / interaction]
+    Assert: [response status, body, side effects]
+```
+
+### 11.3 Performance Tests
+
+```
+test_[operation]_within_[threshold]:
+    Action: [operation under test]
+    Assert: [completes within threshold from NFRs]
 ```
 
 ---
 
-## Acceptance Checklist
+## 12. Success Criteria
 
-- [ ] Specification reviewed and approved by [Reviewer Name]
-- [ ] All test cases defined (TDD: ready for Red phase)
-- [ ] Performance requirements documented and measurable
-- [ ] Security requirements clear and verifiable
-- [ ] Edge cases identified and covered
-- [ ] Dependencies listed and available
-- [ ] No breaking changes to existing functionality
+Feature is **done** when ALL of the following are true:
 
----
-
-## Related Documentation
-
-- **Architecture Decision:** Link to `docs/adr/ADR-XXX-email-validation.md` (if applicable)
-- **Implementation Guide:** `.github/instructions/python/python-fastapi.instructions.md`
-- **Testing Pattern:** `tests/test_example.py`
+- [ ] All functional requirements (Section 3.1) implemented
+- [ ] All behavior scenarios (Section 4) passing
+- [ ] All edge cases (Section 4.2) handled
+- [ ] All test cases (Section 11) passing
+- [ ] Test coverage meets threshold (Section 10.1)
+- [ ] Performance meets NFR targets (Section 3.2)
+- [ ] Security requirements met (Section 10.3)
+- [ ] Error handling follows contract (Section 9)
+- [ ] Documentation complete (docstrings, README, API docs)
+- [ ] No breaking changes to existing interfaces
+- [ ] Code review approved
 
 ---
 
-## References
+## 13. Invariants
 
-- [RFC 5322 - Email Format](https://tools.ietf.org/html/rfc5322)
-- [RFC 5321 - SMTP Protocol](https://tools.ietf.org/html/rfc5321)
-- [email-validator package](https://github.com/JoshData/python-email-validator)
+Rules that must NEVER be violated, regardless of implementation approach.
+
+- [e.g. User data must never be accessible without authentication]
+- [e.g. Financial calculations must use decimal types, never floating point]
+- [e.g. All timestamps stored in UTC]
 
 ---
 
-**Status:** Draft / In Review / Approved
+## 14. Risks & Open Questions
 
-**Created:** YYYY-MM-DD
+### 14.1 Risks
 
-**Last Updated:** YYYY-MM-DD
+| Risk | Likelihood | Impact | Mitigation |
+|------|-----------|--------|------------|
+| [Risk description] | Low/Med/High | Low/Med/High | [Strategy] |
 
-**Owner:** [Your Name]
+### 14.2 Open Questions
 
-**Reviewers:** [Reviewer Names]
+- [ ] [Question that needs resolution before or during implementation]
+- [ ] [Question that needs resolution before or during implementation]
+
+---
+
+## 15. References
+
+- [Link to related spec, ADR, RFC, or documentation]
+- [Link to external standard or library docs]
+
+---
+
+## Appendix: Validation Checklist
+
+Before implementation begins, verify:
+
+- [ ] All functional requirements have testable acceptance criteria
+- [ ] All behavior scenarios are unambiguous (Given/When/Then)
+- [ ] All edge cases identified and documented
+- [ ] All interfaces fully specified (schemas, errors, auth)
+- [ ] Data model complete (fields, types, constraints, relationships)
+- [ ] Technical stack versions pinned
+- [ ] Error handling contract defined
+- [ ] Performance targets are measurable
+- [ ] Security requirements are explicit
+- [ ] Success criteria are verifiable
+- [ ] No open questions remain that block implementation
