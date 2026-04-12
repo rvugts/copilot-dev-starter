@@ -11,20 +11,19 @@ Usage:
   python scripts/append-makefile.py terraform
 """
 
-import os
 import re
 import sys
 from pathlib import Path
 
 
-def extract_targets(makefile_content: str) -> dict:
+def extract_targets(makefile_content: str) -> dict[str, str]:
     """
     Extract targets and their rules from Makefile content.
 
     Returns dict: {target_name: full_rule_text}
     """
-    targets = {}
-    lines = makefile_content.split('\n')
+    targets: dict[str, str] = {}
+    lines: list[str] = makefile_content.split('\n')
     i = 0
 
     while i < len(lines):
@@ -70,13 +69,13 @@ def merge_makefiles(language: str) -> None:
     if main_file.exists():
         with open(main_file) as f:
             main_content = f.read()
-        main_targets = extract_targets(main_content)
+        main_targets: dict[str, str] = extract_targets(main_content)
     else:
         main_content = ""
-        main_targets = {}
+        main_targets: dict[str, str] = {}
 
     # Merge: add new targets, skip if already exist
-    added_targets = []
+    added_targets: list[str] = []
     for target_name, rule in template_targets.items():
         if target_name not in main_targets:
             added_targets.append(target_name)
@@ -97,7 +96,7 @@ def merge_makefiles(language: str) -> None:
     if merged_content and not merged_content.endswith('\n'):
         merged_content += '\n'
 
-    merged_content += '\n'.join(template_targets[t] for t in added_targets)
+    merged_content += '\n'.join([template_targets[t] for t in added_targets])
     if not merged_content.endswith('\n'):
         merged_content += '\n'
 

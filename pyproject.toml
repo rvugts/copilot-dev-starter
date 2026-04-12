@@ -88,6 +88,6 @@ max-line-length = 100
 
 [tool.pyright]
 include = ["src"]
-exclude = ["**/node_modules", "**/__pycache__", "venv"]
+exclude = ["**/node_modules", "**/__pycache__", "venv", "**/.*"]
 typeCheckingMode = "strict"
 reportMissingTypeStubs = false
