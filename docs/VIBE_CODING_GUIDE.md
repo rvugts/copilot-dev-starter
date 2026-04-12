@@ -186,7 +186,22 @@ Use the create-spec skill to draft a spec for [feature].
 
 **Output:** Writes `docs/specs/spec.md` and archives any prior active spec using its frontmatter `name` field.
 
-### 2. audit-security
+### 2. create-tasks
+**Purpose:** Decompose a spec into atomic, ordered tasks for AI-driven implementation
+
+**Best for:**
+- Planning implementation after a spec is written
+- Creating work items an AI agent can execute one at a time
+- Establishing correct execution order with explicit dependencies
+
+**How to invoke:**
+```
+Use the create-tasks skill to break down docs/specs/spec.md into tasks.
+```
+
+**Output:** Writes `docs/specs/tasks.md` with task list, execution order, and prompt hints for each task.
+
+### 3. audit-security
 **Purpose**: Comprehensive security audit of your codebase
 
 **Best for:**
@@ -211,7 +226,7 @@ Perform a security audit on this codebase to identify vulnerabilities and compli
 - Secrets management
 - Dependency supply chain security
 
-### 3. refactor-python
+### 4. refactor-python
 **Purpose**: Refactor Python code applying engineering best practices
 
 **Best for:**
@@ -235,7 +250,7 @@ Use the refactor-python skill to improve this code while maintaining functionali
 - Security improvements
 - Performance optimizations
 
-### 4. create-prompt
+### 5. create-prompt
 **Purpose**: Generate structured prompts for complex tasks
 
 **Best for:**
@@ -255,7 +270,7 @@ Use the create-prompt skill to create a multi-step prompt for analyzing our data
 - Support for sequential multi-prompt workflows
 - Automatic prompt numbering and saving to `./prompts/`
 
-### 5. run-prompt
+### 6. run-prompt
 **Purpose**: Execute saved prompts as isolated sub-tasks
 
 **Best for:**
@@ -521,6 +536,7 @@ output "vpc_id" {
 ### Copilot Skills
 The repository includes specialized skills for common development tasks:
 - **create-spec**: Specification-driven development; writes `docs/specs/spec.md`
+- **create-tasks**: Decomposes a spec into ordered, executable tasks at `docs/specs/tasks.md`
 - **audit-security**: Comprehensive security audits with OWASP Top 10 checks
 - **refactor-python**: Python code refactoring and optimization
 - **create-prompt**: Generate structured multi-step prompts

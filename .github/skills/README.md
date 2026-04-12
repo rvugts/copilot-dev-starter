@@ -16,6 +16,19 @@ This directory contains custom agent skills for GitHub Copilot. These skills enh
 - Complexity scaling — lightweight specs for simple features, comprehensive for complex systems
 - Every requirement maps to testable acceptance criteria (SDD + TDD ready)
 
+### create-tasks
+**Description:** Breaks down a specification (`docs/specs/spec.md`) into atomic, executable tasks optimized for AI-driven development workflows. Writes `docs/specs/tasks.md`, archiving any prior task file automatically.
+
+**When to use:** After creating a spec with `create-spec`, when you need to plan implementation steps, decompose a feature into work items, or create a task breakdown for AI agents.
+
+**Key features:**
+- Reads the active spec at `docs/specs/spec.md` and decomposes it into ordered tasks
+- Each task has: category, spec reference, inputs, outputs, acceptance criteria, dependencies
+- TDD-aware sequencing (test tasks paired with implementation tasks)
+- Prompt hints for each task to support the `create-prompt` / `run-prompt` workflow
+- Complexity scaling: 5–10 tasks for simple specs, up to 50 for complex ones
+- Archives previous `tasks.md` automatically when regenerating
+
 ### audit-security
 **Description:** Performs a comprehensive security audit of the current codebase, identifying vulnerabilities and providing remediation strategies based on OWASP Top 10 2025 standards.
 
@@ -96,6 +109,7 @@ Personal skills are available across all your projects.
 ### Automatic Invocation
 Skills are automatically loaded when Copilot determines the task matches the skill's description. For example:
 - Asking to "create a spec" or "write a specification" will invoke `create-spec`
+- Asking to "break down the spec into tasks" or "create implementation tasks" will invoke `create-tasks`
 - Mentioning "security audit" will likely invoke `audit-security`
 - Requesting Python refactoring will invoke `refactor-python`
 - Asking to create prompts will invoke `create-prompt`
@@ -113,6 +127,7 @@ Use the audit-security skill to perform a security audit on this codebase.
 Use slash commands in Copilot Chat:
 ```
 /create-spec
+/create-tasks
 /audit-security
 /refactor-python
 /create-prompt
