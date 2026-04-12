@@ -30,6 +30,27 @@ This repository provides:
 
 ## Getting started
 
+### Install this template for a new project
+
+For a new project, do not simply clone this repository and keep its `.git` history. That would link your project to the template repo and pollute your own commit history.
+
+Use one of these approaches instead:
+
+- **Create a new repo from this template on GitHub:** This repository is configured as a GitHub template, so use the **Use this template** button to create a fresh repo when your organization allows creating new repos on GitHub.
+- **Download the repository archive:** Download the ZIP from GitHub, extract it into a new project folder, then initialize your own git repository.
+- **Clone then reinitialize git:** If you need a local-only start, clone locally, delete the `.git` folder, and run `git init` inside the new project directory before making your first commit.
+
+Example:
+
+```bash
+git clone https://github.com/<owner>/copilot-dev-starter.git my-new-project
+cd my-new-project
+rm -rf .git
+git init
+```
+
+### Start using the template
+
 1. **Read the Vibe Coding Guide:** Start with `docs/VIBE_CODING_GUIDE.md` for development philosophy and Copilot best practices
 2. **For Python development:** Run `bash scripts/enable-python.sh`
 3. **For Terraform:** Run `bash scripts/enable-terraform.sh`
