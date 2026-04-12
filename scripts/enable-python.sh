@@ -10,6 +10,10 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+cd "$REPO_ROOT"
+
 echo "🐍 Enabling Python Development Environment..."
 echo ""
 
@@ -45,6 +49,7 @@ echo ""
 
 if [ ! -f ".github/workflows/ci.yml" ]; then
     echo "🚀 Enabling GitHub Actions CI workflow..."
+    mkdir -p .github/workflows
     cp .github/ci-templates/ci-python.template.yml .github/workflows/ci.yml
     echo "✅ CI workflow enabled at .github/workflows/ci.yml"
 else
