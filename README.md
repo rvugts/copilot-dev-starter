@@ -22,7 +22,7 @@ This repository provides:
 - `docs/VIBE_CODING_GUIDE.md` — contributor guide and Copilot best practices
 - `.github/copilot-instructions.md` — repository-wide Copilot guidance
 - `.github/instructions/` — language-specific instruction files
-- `.github/skills/` — reusable Copilot skills (create-spec, create-tasks, audit-security, refactor-python, create-prompt, run-prompt)
+- `.github/skills/` — reusable Copilot skills (create-spec, create-tasks, audit-security, refactor-python, generate-prompt, run-prompt)
 - `.github/hooks/pre-commit.template` — pre-commit hook template for Python projects (copy to `.git/hooks/pre-commit`)
 - `.github/ci-templates/` — CI workflow templates (copy and customize)
 - `.vscode/settings.json` — shared VS Code settings for the project
@@ -70,7 +70,7 @@ This template supports SDD — every feature starts with a specification that se
 3. The skill writes `docs/specs/spec.md` (archiving any previous active spec using its frontmatter `name`), aligned with `docs/spec.template.md`
 4. Use the `create-tasks` skill (or invoke `/create-tasks`) to decompose the spec into an ordered, executable task list at `docs/specs/tasks.md`
 5. Work through the tasks in order — write tests first (TDD), then implement
-6. Use `/create-prompt` and `/run-prompt` to delegate individual tasks to Copilot agents
+6. Use `/generate-prompt` and `/run-prompt` to delegate individual tasks to Copilot agents
 
 The `create-spec` and `create-tasks` skills support Python, Node.js/TypeScript, Databricks/PySpark/SQL, and other stacks. See `.github/skills/` for details.
 
